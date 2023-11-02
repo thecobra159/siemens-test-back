@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config'
 import { EquipamentModule } from './equipament/equipament.module'
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
+import { PointModule } from './point/point.module'
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose'
         }),
         MongooseModule.forRoot(process.env.DB_URI),
         EquipamentModule,
+        PointModule,
     ],
     controllers: [AppController],
     providers: [AppService],

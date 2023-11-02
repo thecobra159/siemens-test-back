@@ -24,7 +24,7 @@ export class PointService {
         }
     }
 
-    async findAllByEquipamentId(id: string): Promise<Point[]> {
+    async findAllByEquipmentId(id: string): Promise<Point[]> {
         try {
             const points = await this.pointModel.find()
 
@@ -32,7 +32,7 @@ export class PointService {
                 return []
             }
 
-            return points.filter(p => p.equipamentId === id)
+            return points.filter(p => p.equipmentId === id)
         } catch (error) {
             throw new BadRequestException(error)
         }
@@ -83,9 +83,9 @@ export class PointService {
         }
     }
 
-    async create(equipament: CreatePointDTO): Promise<Point> {
+    async create(equipment: CreatePointDTO): Promise<Point> {
         try {
-            return await this.pointModel.create(equipament)
+            return await this.pointModel.create(equipment)
         } catch (error) {
             throw new BadRequestException(error)
         }

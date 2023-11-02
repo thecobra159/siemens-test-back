@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator'
 
-export class CreateEquipamentDTO {
+export class CreateEquipmentDTO {
     @IsString()
     @IsNotEmpty()
     name: string

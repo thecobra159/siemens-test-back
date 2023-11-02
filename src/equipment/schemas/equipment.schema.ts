@@ -1,12 +1,12 @@
 import { Document } from 'mongoose'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 
-export type EquipamentDocument = Equipament & Document
+export type EquipmentDocument = Equipment & Document
 
 @Schema({
     timestamps: true,
 })
-export class Equipament {
+export class Equipment {
     @Prop({ required: true })
     name: string
 
@@ -14,4 +14,4 @@ export class Equipament {
     serialNumber: string
 }
 
-export const EquipamentSchema = SchemaFactory.createForClass(Equipament)
+export const EquipmentSchema = SchemaFactory.createForClass(Equipment)

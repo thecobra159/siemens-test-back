@@ -13,12 +13,12 @@ export class PointController {
         return this.pointService.findAll()
     }
 
-    @Get('/equipament/:id')
-    async findAllByEquipamentId(
+    @Get('/equipment/:id')
+    async findAllByEquipmentId(
         @Param('id')
         id: string,
     ): Promise<Point[]> {
-        return this.pointService.findAllByEquipamentId(id)
+        return this.pointService.findAllByEquipmentId(id)
     }
 
     @Get(':id')

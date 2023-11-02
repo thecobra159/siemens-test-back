@@ -1,7 +1,7 @@
-import { Equipament } from './schemas/equipament.schema'
+import { Equipment } from './schemas/equipment.schema'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { UpdateEquipamentDTO } from './dto/update-equipament.dto'
+import { UpdateEquipmentDTO } from './dto/update-equipment.dto'
 import {
     BadRequestException,
     Injectable,
@@ -9,29 +9,29 @@ import {
 } from '@nestjs/common'
 
 @Injectable()
-export class EquipamentService {
+export class EquipmentService {
     constructor(
-        @InjectModel(Equipament.name)
-        private equipamentModel: Model<Equipament>,
+        @InjectModel(Equipment.name)
+        private equipmentModel: Model<Equipment>,
     ) {}
 
-    async findAll(): Promise<Equipament[]> {
+    async findAll(): Promise<Equipment[]> {
         try {
-            return await this.equipamentModel.find()
+            return await this.equipmentModel.find()
         } catch (error) {
             throw new BadRequestException(error)
         }
     }
 
-    async findById(id: string): Promise<Equipament> {
+    async findById(id: string): Promise<Equipment> {
         try {
-            const equipament = await this.equipamentModel.findById(id)
+            const equipment = await this.equipmentModel.findById(id)
 
-            if (!equipament) {
-                throw new NotFoundException(`Equipament ${id} not found`)
+            if (!equipment) {
+                throw new NotFoundException(`Equipment ${id} not found`)
             }
 
-            return equipament
+            return equipment
         } catch (error) {
             throw new BadRequestException(error)
         }
@@ -39,12 +39,12 @@ export class EquipamentService {
 
     async updateById(
         id: string,
-        equipament: UpdateEquipamentDTO,
-    ): Promise<Equipament> {
+        equipment: UpdateEquipmentDTO,
+    ): Promise<Equipment> {
         try {
-            const res = await this.equipamentModel.findByIdAndUpdate(
+            const res = await this.equipmentModel.findByIdAndUpdate(
                 id,
-                equipament,
+                equipment,
                 {
                     new: true,
                     runValidators: true,
@@ -63,7 +63,7 @@ export class EquipamentService {
 
     async deleteById(id: string): Promise<boolean> {
         try {
-            const res = await this.equipamentModel.findByIdAndDelete(id)
+            const res = await this.equipmentModel.findByIdAndDelete(id)
 
             if (!res) {
                 return false
@@ -75,9 +75,9 @@ export class EquipamentService {
         }
     }
 
-    async create(equipament: Equipament): Promise<Equipament> {
+    async create(equipment: Equipment): Promise<Equipment> {
         try {
-            return await this.equipamentModel.create(equipament)
+            return await this.equipmentModel.create(equipment)
         } catch (error) {
             throw new BadRequestException(error)
         }

@@ -15,5 +15,5 @@ export class CreatePointDTO {
 
     @IsString()
     @IsNotEmpty()
-    equipamentId: string
+    equipmentId: string
 }

@@ -11,5 +11,5 @@ export class UpdatePointDTO {
     value: number
 
     @IsString()
-    equipamentId: string
+    equipmentId: string
 }

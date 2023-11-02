@@ -1,7 +1,7 @@
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule } from '@nestjs/config'
-import { EquipamentModule } from './equipament/equipament.module'
+import { EquipmentModule } from './equipment/equipment.module'
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 import { PointModule } from './point/point.module'
@@ -13,7 +13,7 @@ import { PointModule } from './point/point.module'
             isGlobal: true,
         }),
         MongooseModule.forRoot(process.env.DB_URI),
-        EquipamentModule,
+        EquipmentModule,
         PointModule,
     ],
     controllers: [AppController],

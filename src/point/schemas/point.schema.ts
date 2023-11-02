@@ -17,7 +17,7 @@ export class Point {
     value: number
 
     @Prop({ required: true })
-    equipamentId: string
+    equipmentId: string
 }
 
 export const PointSchema = SchemaFactory.createForClass(Point)

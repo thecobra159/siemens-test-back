@@ -28,7 +28,9 @@ export class EquipamentController {
         @Body()
         equipament: UpdateEquipamentDTO,
     ): Promise<Equipament> {
-        return this.equipamentService.updateById(id, equipament)
+        const equipamentDto = this.findById(id)
+        const updateDTO = { ...equipamentDto, ...equipament }
+        return this.equipamentService.updateById(id, updateDTO)
     }
 
     @Post()

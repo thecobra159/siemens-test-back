@@ -1,6 +1,7 @@
 import { Equipament } from './schemas/equipament.schema'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
+import { UpdateEquipamentDTO } from './dto/update-equipament.dto'
 import {
     BadRequestException,
     Injectable,
@@ -36,9 +37,12 @@ export class EquipamentService {
         }
     }
 
-    async updateById(id: string, equipament: Equipament): Promise<Equipament> {
+    async updateById(
+        id: string,
+        equipament: UpdateEquipamentDTO,
+    ): Promise<Equipament> {
         try {
-            return await this.equipamentModel.findByIdAndUpdate(
+            const res = await this.equipamentModel.findByIdAndUpdate(
                 id,
                 equipament,
                 {
@@ -46,6 +50,12 @@ export class EquipamentService {
                     runValidators: true,
                 },
             )
+
+            if (!res) {
+                throw new NotFoundException()
+            }
+
+            return res
         } catch (error) {
             throw new BadRequestException(error)
         }

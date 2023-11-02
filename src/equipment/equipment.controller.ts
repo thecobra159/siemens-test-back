@@ -1,9 +1,11 @@
+import { ApiTags } from '@nestjs/swagger'
 import { CreateEquipmentDTO } from './dto/create-equipment.dto'
 import { Equipment } from './schemas/equipment.schema'
 import { EquipmentService } from './equipment.service'
 import { UpdateEquipmentDTO } from './dto/update-equipment.dto'
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
+@ApiTags('equipment')
 @Controller('equipment')
 export class EquipmentController {
     constructor(private equipmentService: EquipmentService) {}

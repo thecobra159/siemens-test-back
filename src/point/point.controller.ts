@@ -1,9 +1,11 @@
+import { ApiTags } from '@nestjs/swagger'
 import { CreatePointDTO } from './dto/create-point.dto'
 import { Point } from './schemas/point.schema'
 import { PointService } from './point.service'
 import { UpdatePointDTO } from './dto/update-point.dto'
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
+@ApiTags('point')
 @Controller('point')
 export class PointController {
     constructor(private pointService: PointService) {}

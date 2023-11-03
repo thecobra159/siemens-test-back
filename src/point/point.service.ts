@@ -83,9 +83,9 @@ export class PointService {
         }
     }
 
-    async create(equipment: CreatePointDTO): Promise<Point> {
+    async create(point: CreatePointDTO): Promise<Point> {
         try {
-            return await this.pointModel.create(equipment)
+            return await this.pointModel.create(point)
         } catch (error) {
             throw new BadRequestException(error)
         }

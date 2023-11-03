@@ -3,7 +3,17 @@ import { CreateEquipmentDTO } from './dto/create-equipment.dto'
 import { Equipment } from './schemas/equipment.schema'
 import { EquipmentService } from './equipment.service'
 import { UpdateEquipmentDTO } from './dto/update-equipment.dto'
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+    UsePipes,
+    ValidationPipe,
+} from '@nestjs/common'
 
 @ApiTags('equipment')
 @Controller('equipment')
@@ -11,11 +21,13 @@ export class EquipmentController {
     constructor(private equipmentService: EquipmentService) {}
 
     @Get()
+    @UsePipes(new ValidationPipe({ transform: true }))
     async findAll(): Promise<Equipment[]> {
         return this.equipmentService.findAll()
     }
 
     @Get(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async findById(
         @Param('id')
         id: string,
@@ -24,6 +36,7 @@ export class EquipmentController {
     }
 
     @Put(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async updateById(
         @Param('id')
         id: string,
@@ -36,6 +49,7 @@ export class EquipmentController {
     }
 
     @Post()
+    @UsePipes(new ValidationPipe({ transform: true }))
     async create(
         @Body()
         equipment: CreateEquipmentDTO,
@@ -44,6 +58,7 @@ export class EquipmentController {
     }
 
     @Delete(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async deleteById(
         @Param('id')
         id: string,

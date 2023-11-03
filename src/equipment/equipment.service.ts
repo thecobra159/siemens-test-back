@@ -1,3 +1,4 @@
+import { CreateEquipmentDTO } from './dto/create-equipment.dto'
 import { Equipment } from './schemas/equipment.schema'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
@@ -75,7 +76,7 @@ export class EquipmentService {
         }
     }
 
-    async create(equipment: Equipment): Promise<Equipment> {
+    async create(equipment: CreateEquipmentDTO): Promise<Equipment> {
         try {
             return await this.equipmentModel.create(equipment)
         } catch (error) {

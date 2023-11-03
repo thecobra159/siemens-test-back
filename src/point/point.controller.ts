@@ -3,7 +3,17 @@ import { CreatePointDTO } from './dto/create-point.dto'
 import { Point } from './schemas/point.schema'
 import { PointService } from './point.service'
 import { UpdatePointDTO } from './dto/update-point.dto'
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+    UsePipes,
+    ValidationPipe,
+} from '@nestjs/common'
 
 @ApiTags('point')
 @Controller('point')
@@ -11,11 +21,13 @@ export class PointController {
     constructor(private pointService: PointService) {}
 
     @Get()
+    @UsePipes(new ValidationPipe({ transform: true }))
     async findAll(): Promise<Point[]> {
         return this.pointService.findAll()
     }
 
     @Get('/equipment/:id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async findAllByEquipmentId(
         @Param('id')
         id: string,
@@ -24,6 +36,7 @@ export class PointController {
     }
 
     @Get(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async findById(
         @Param('id')
         id: string,
@@ -32,6 +45,7 @@ export class PointController {
     }
 
     @Put(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async updateById(
         @Param('id')
         id: string,
@@ -44,6 +58,7 @@ export class PointController {
     }
 
     @Post()
+    @UsePipes(new ValidationPipe({ transform: true }))
     async create(
         @Body()
         point: CreatePointDTO,
@@ -52,6 +67,7 @@ export class PointController {
     }
 
     @Delete(':id')
+    @UsePipes(new ValidationPipe({ transform: true }))
     async deleteById(
         @Param('id')
         id: string,
